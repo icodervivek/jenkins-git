@@ -16,7 +16,7 @@ pipeline {
         stage('Install') {
             steps {
                 dir('vite-react-project') {
-                    sh 'npm install'
+                    sh 'npm ci'
                 }
             }
         }
