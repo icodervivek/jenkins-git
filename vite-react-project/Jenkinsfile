@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+
+    environment {
+        EC2_HOST = 'ec2-13-235-75-240.ap-south-1.compute.amazonaws.com'
+        DEPLOY_PATH = '/var/www/vite-react-project'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Lint') {
+            steps {
+                sh 'npm run lint'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sshagent(credentials: ['ec2-ssh-key']) {
+                    sh "rsync -avz --delete dist/ ${EC2_HOST}:${DEPLOY_PATH}"
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline completed successfully.'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+    }
+}
+
