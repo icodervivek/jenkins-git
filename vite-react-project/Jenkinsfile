@@ -14,15 +14,16 @@ pipeline {
         }
 
         stage('Install') {
-            dir('vite-react-project') {
+            steps {
+                dir('vite-react-project') {
                     sh 'npm install'
                 }
-
+            }
         }
 
         stage('Lint') {
             steps {
-                dir('vite-react-project'){
+                dir('vite-react-project') {
                     sh 'npm run lint'
                 }
             }
@@ -30,7 +31,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                dir('vite-react-project'){
+                dir('vite-react-project') {
                     sh 'npm run build'
                 }
             }
@@ -39,7 +40,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sshagent(credentials: ['ec2-ssh-key']) {
-                    sh "rsync -avz --delete dist/ ${EC2_HOST}:${DEPLOY_PATH}"
+                    sh "rsync -avz --delete vite-react-project/dist/ ${EC2_HOST}:${DEPLOY_PATH}"
                 }
             }
         }
@@ -54,4 +55,3 @@ pipeline {
         }
     }
 }
-
