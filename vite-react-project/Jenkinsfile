@@ -40,7 +40,6 @@ pipeline {
        stage('Deploy') {
         steps {
             sh '''
-            mkdir -p /var/www/vite-react-project
             rm -rf /var/www/vite-react-project/*
             cp -r vite-react-project/dist/* /var/www/vite-react-project/
             '''
