@@ -38,10 +38,6 @@ const App = () => {
             Vite + React + Tailwind on EC2
           </h1>
 
-        <div className="bg-amber-950 rounded my-5 py-5">
-          <h1 className="text-3xl">Hey There, Vivek Here !</h1>
-        </div>
-
           <p className="mx-auto mt-3 max-w-2xl text-slate-400">
             A small playground app for practicing Git commits and building a
             Jenkins CI/CD pipeline end to end.
