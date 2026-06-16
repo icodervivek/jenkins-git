@@ -41,7 +41,6 @@ const App = () => {
           <p className="mx-auto mt-3 max-w-2xl text-slate-400">
             A small playground app for practicing Git commits and building a
             Jenkins CI/CD pipeline end to end.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam, assumenda facere at qui eligendi doloribus nesciunt facilis quisquam laborum? Voluptatibus sapiente quisquam sunt fugit impedit consequatur nemo nesciunt laudantium neque.
           </p>
         </section>
 
